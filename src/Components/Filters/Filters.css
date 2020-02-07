@@ -1,0 +1,9 @@
+.Filters{
+    background-color: rgb(216, 191, 216, 0.5);
+    
+    border-radius: 13px 13px 13px 13px;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}

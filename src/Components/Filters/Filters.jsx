@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './Filters.css';
 import SearchBar from '../Search/Search';
-import BeginDateAndTimePickers from '../DatePicker/BeginDatePicker';
-import EndDateAndTimePickers from '../DatePicker/EndDatePicker';
+import DatePicker from '../DatePicker/DatePicker';
 import MultipleSelect from '../Select/Selection'
 
 class Filters extends Component {
@@ -21,14 +20,22 @@ class Filters extends Component {
         this.props.onFiltersChanged(this.state);
     }
 
+    onStartDateChanged = (newDate) => {
+        this.setState({startDate: newDate});
+    }
+
+    onEndDateChanged = (newDate) => {
+        this.setState({ endDate: newDate});
+    }
+
     render() { 
         return ( 
             <React.Fragment>
                 <div className='Filters'>
                     <SearchBar onSearchClicked={this.onSearchClick}/>
-                    <BeginDateAndTimePickers className='BeginDateAndTimePickers' />
+                    <DatePicker date={this.state.startDate} onDateChanged={this.onStartDateChanged} />
                     <label className='Label'>:זמן התחלה</label>
-                    <EndDateAndTimePickers />
+                    <DatePicker date={this.state.endDate} onDateChanged={this.onEndDateChanged} />
                     <label>:זמן סיום</label>
                     <MultipleSelect />
                 </div>

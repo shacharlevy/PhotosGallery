@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
@@ -25,8 +25,16 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function CustomizedInputBase() {
+export default function SearchBar(props) {
   const classes = useStyles();
+  const [text, textChanged] = useState("");
+  const onTextChange = (event) => {
+    textChanged(event.target.value);
+  };
+
+  const onSearchClicked = () => {
+    props.onSearchClicked(text);
+  };
 
   return (
     <React.Fragment className= 'Search'>
@@ -37,8 +45,9 @@ export default function CustomizedInputBase() {
           className={classes.input}
           placeholder="Search.."
           inputProps={{ 'aria-label': 'search google maps' }}
+          onChange={onTextChange}
         />
-        <IconButton color="primary" className={classes.iconButton} aria-label="directions">
+        <IconButton color="primary" className={classes.iconButton} aria-label="directions" onClick={onSearchClicked}>
           <SearchIcon />
         </IconButton>
       </Paper>

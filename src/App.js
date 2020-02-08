@@ -19,7 +19,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-          <Filters />
+          <Filters onFiltersChanged={this.onFiltersChanged}/>
           <ImagesGrid filters={this.state.filters}/>
       </div>
     );

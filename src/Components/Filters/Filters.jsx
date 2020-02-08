@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import './Filters.css';
-import Search from '../Search/Search';
+import SearchBar from '../Search/Search';
 import BeginDateAndTimePickers from '../DatePicker/BeginDatePicker';
 import EndDateAndTimePickers from '../DatePicker/EndDatePicker';
 import MultipleSelect from '../Select/Selection'
 
 class Filters extends Component {
-    state = {  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            startDate: Date(),
+            endDate: Date(),
+            sourceIds: [],
+            query: ""
+        };
+    }
+
+    onSearchClick = (queryText) => {
+        this.setState({ query: queryText });
+        this.props.onFiltersChanged(this.state);
+    }
+
     render() { 
         return ( 
             <React.Fragment>
                 <div className='Filters'>
-                    <Search />
+                    <SearchBar onSearchClicked={this.onSearchClick}/>
                     <BeginDateAndTimePickers className='BeginDateAndTimePickers' />
                     <label className='Label'>:זמן התחלה</label>
                     <EndDateAndTimePickers />

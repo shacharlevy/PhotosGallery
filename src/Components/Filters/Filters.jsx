@@ -28,6 +28,10 @@ class Filters extends Component {
         this.setState({ endDate: newDate});
     }
 
+    onSourcesChanged = (newSources) => {
+        this.setState({sourceIds: newSources});
+    }
+
     render() { 
         return ( 
             <React.Fragment>
@@ -37,7 +41,7 @@ class Filters extends Component {
                     <label className='Label'>:זמן התחלה</label>
                     <DatePicker date={this.state.endDate} onDateChanged={this.onEndDateChanged} />
                     <label>:זמן סיום</label>
-                    <MultipleSelect />
+                    <MultipleSelect sources={this.state.sourceIds} onSourcesChange={this.onSourcesChanged} />
                 </div>
             </React.Fragment>
          );

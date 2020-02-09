@@ -37,25 +37,17 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Shachar Levy',
-  'Galit Levy',
-  'Omer Tov',
-  'Chocolate',
-  'Banana',
-  'Apple',
-  'Sugar',
-  'Milk',
-  'Snow',
-  'Dog',
-  'Family',
+const sources = [
+  'Source 1',
+  'Source 2',
+  'Source 3'
 ];
 
-export default function MultipleSelect() {
+export default function MultipleSelect(props) {
   const classes = useStyles();
-  const [personName, setPersonName] = React.useState([]);
+  const selectedSources = props.sources;
   const handleChange = event => {
-    setPersonName(event.target.value);
+    props.onSourcesChange(event.target.value);
   };
 
   return (
@@ -66,16 +58,16 @@ export default function MultipleSelect() {
           labelId="demo-mutiple-checkbox-label"
           id="demo-mutiple-checkbox"
           multiple
-          value={personName}
+          value={selectedSources}
           onChange={handleChange}
           input={<Input />}
           renderValue={selected => selected.join(', ')}
           MenuProps={MenuProps}
         >
-          {names.map(name => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
-              <ListItemText primary={name} />
+          {sources.map(source => (
+            <MenuItem key={source} value={source}>
+              <Checkbox checked={selectedSources.indexOf(source) > -1} />
+              <ListItemText primary={source} />
             </MenuItem>
           ))}
         </Select>

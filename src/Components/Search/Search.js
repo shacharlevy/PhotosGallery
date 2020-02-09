@@ -37,7 +37,7 @@ export default function SearchBar(props) {
   };
 
   return (
-    <React.Fragment className= 'Search'>
+    <React.Fragment>
       <Paper component="form" className={classes.root} id='TextField'>
         <IconButton className={classes.iconButton} aria-label="menu">
         </IconButton>
